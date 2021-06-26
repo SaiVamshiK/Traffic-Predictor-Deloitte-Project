@@ -13,9 +13,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DeloitteProject</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Traffic Predictor</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,16 +25,16 @@
                         @if (_sm.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="IdentityUser" asp-action="Logout">Logout</a>
+                                <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Logout">Logout</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="IdentityUser" asp-action="Register">Register</a>
+                                <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Register">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="IdentityUser" asp-action="Login">Login</a>
+                                <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Login">Login</a>
                             </li>
                         }
                     </ul>
@@ -48,9 +48,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-dark">
         <div class="container">
-            &copy; 2021 - DeloitteProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - DeloitteProject 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

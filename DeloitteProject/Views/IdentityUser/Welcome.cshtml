@@ -6,12 +6,16 @@
     ViewData["Title"] = "Welcome";
 }
 
-<h1>Welcome - <b>@ViewBag.message</b></h1>
+<h1>Welcome - <b class="small">@ViewBag.message</b></h1>
 
-<hr />
-@if(_sm.IsSignedIn(User))
-{
-<form method="post" asp-controller="IdentityUser" asp-action="Logout">
-    <input type="submit" value="Logout" />
-</form>
-}
+
+<!--
+    <hr />
+    At the rate sign needed
+    if(_sm.IsSignedIn(User))
+    {
+    <form method="post" asp-controller="IdentityUser" asp-action="Logout">
+        <input type="submit" value="Logout" />
+    </form>
+    }
+-->
