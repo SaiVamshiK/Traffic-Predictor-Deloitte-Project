@@ -36,7 +36,7 @@ namespace DeloitteProject.Controllers
             if(insertRec.Succeeded)
             {
                 ViewBag.message = "The user with email:" + uc.Email + " is saved successfully";
-
+                return View("Index");
             }
             else
             {
