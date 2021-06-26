@@ -1,0 +1,31 @@
+﻿@model LoginClass
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login Page</h1>
+
+<form method="post" asp-controller="IdentityUser" asp-action="Login"> 
+    <table class="table">
+        <tr>
+            <td>
+                Username
+            </td>
+            <td>
+                <input type="email" placeholder="Enter Email-ID" asp-for="Email" name="Email"/>
+                <span asp-validation-for="Email" class="alert-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Password
+            </td>
+            <td>
+                <input type="password" asp-for="Password" placeholder="Enter password" />
+                <span asp-validation-for="Password" class="alert-danger"></span>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Login"/>
+    @Html.ValidationSummary(true, "",new { @class="alert-danger" })
+</form>

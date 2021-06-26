@@ -37,6 +37,7 @@ namespace DeloitteProject
                 options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),obj=>obj.MigrationsAssembly(currentAssembly))                  
                 );
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityDbContext>();
+            services.ConfigureApplicationCookie(options=>options.LoginPath="/IdentityUser/Login");                     
             services.AddControllersWithViews();
         }
 
@@ -57,7 +58,7 @@ namespace DeloitteProject
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
