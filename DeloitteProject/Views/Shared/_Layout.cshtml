@@ -25,6 +25,9 @@
                         @if (_sm.IsSignedIn(User))
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Welcome">Profile</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Logout">Logout</a>
                             </li>
                         }
