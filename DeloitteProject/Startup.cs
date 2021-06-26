@@ -10,6 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace DeloitteProject
 {
@@ -28,6 +31,11 @@ namespace DeloitteProject
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                 );
+            var currentAssembly = Assembly.GetExecutingAssembly().GetName().Name;
+            services.AddDbContext<IdentityDbContext>(
+                options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),obj=>obj.MigrationsAssembly(currentAssembly))                  
+                );
+
             services.AddControllersWithViews();
         }
 
