@@ -8,6 +8,7 @@ namespace DeloitteProject.Models
 {
     public class UserClass
     {
+        
         [Required(ErrorMessage ="Enter the email")]
         [Display(Name ="Email")]
         public string Email { get; set; }

@@ -84,7 +84,7 @@ namespace DeloitteProject.Controllers
         public async Task<IActionResult> Logout()
         {
             await _sm.SignOutAsync();
-            return RedirectToAction("Login", "IdentityUser");
+            return RedirectToAction("Index", "Home");
         }
 
     }
