@@ -3,29 +3,56 @@
     ViewData["Title"] = "Login";
 }
 
-<h1>Login Page</h1>
+<!--
+    <h1>Login Page</h1>
 
-<form method="post" asp-controller="IdentityUser" asp-action="Login"> 
-    <table class="table">
-        <tr>
-            <td>
-                Username
-            </td>
-            <td>
-                <input placeholder="Enter UserName" asp-for="UserName" name="UserName"/>
-                <span asp-validation-for="UserName" class="alert-danger"></span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Password
-            </td>
-            <td>
-                <input type="password" asp-for="Password" placeholder="Enter password" />
-                <span asp-validation-for="Password" class="alert-danger"></span>
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="Login"/>
-    @Html.ValidationSummary(true, "",new { @class="alert-danger" })
-</form>
+    <form method="post" asp-controller="IdentityUser" asp-action="Login">
+        <table class="table">
+            <tr>
+                <td>
+                    Username
+                </td>
+                <td>
+                    <input placeholder="Enter UserName" asp-for="UserName" name="UserName" />
+                    <span asp-validation-for="UserName" class="alert-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password
+                </td>
+                <td>
+                    <input type="password" asp-for="Password" placeholder="Enter password" />
+                    <span asp-validation-for="Password" class="alert-danger"></span>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Login" />
+        Html.ValidationSummary(true, "", new { class = "alert-danger" })
+    </form>
+
+
+-->
+
+<h1>Login Here!</h1>
+<hr />
+<div class="row">
+    <div class="col-md-9">
+        <form method="post" asp-controller="IdentityUser" asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "alert-danger" })
+        </form>
+    </div>
