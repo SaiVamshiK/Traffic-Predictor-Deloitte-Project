@@ -61,7 +61,7 @@ namespace DeloitteProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _sm.PasswordSignInAsync(obj.Email,obj.Password,false,false);                                    
+                var result = await _sm.PasswordSignInAsync(obj.UserName, obj.Password,false,false);                                    
                 if(result.Succeeded)
                 {
                     return RedirectToAction("Welcome","IdentityUser");

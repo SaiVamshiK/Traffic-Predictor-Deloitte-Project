@@ -9,8 +9,8 @@ namespace DeloitteProject.Models
     public class LoginClass
     {
         [Required(ErrorMessage = "Enter the email")]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
         [Required(ErrorMessage = "Enter the Password")]
         [Display(Name = "Password")]
         [DataType(DataType.Password)]
