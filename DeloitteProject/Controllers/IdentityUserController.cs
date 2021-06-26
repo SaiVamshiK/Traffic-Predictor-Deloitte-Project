@@ -33,14 +33,14 @@ namespace DeloitteProject.Controllers
         public async Task<IActionResult> Register(UserClass uc)
         {
             var user =new IdentityUser{
-                UserName=uc.Email,
+                UserName=uc.UserName,
                 Email=uc.Email,
             };
             var insertRec = await _um.CreateAsync(user,uc.pwd);
             if(insertRec.Succeeded)
             {
-                ViewBag.message = "The user with email:" + uc.Email + " is saved successfully";
-                return View("Index");
+                ViewBag.message = "Account for " + uc.UserName + " created successfully";
+                return View("Login");
             }
             else
             {
