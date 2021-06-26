@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity;
 
 namespace DeloitteProject
 {
@@ -35,7 +36,7 @@ namespace DeloitteProject
             services.AddDbContext<IdentityDbContext>(
                 options=>options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),obj=>obj.MigrationsAssembly(currentAssembly))                  
                 );
-
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityDbContext>();
             services.AddControllersWithViews();
         }
 
