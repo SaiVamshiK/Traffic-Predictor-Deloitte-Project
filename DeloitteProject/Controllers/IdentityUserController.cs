@@ -113,6 +113,38 @@ namespace DeloitteProject.Controllers
             await _sm.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+        [Authorize]
+        [HttpGet]
+        public IActionResult PasswordReset()
+        {
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> PasswordReset(ResetPassword obj)
+        {
+            if(ModelState.IsValid)
+            {
+                var user = await _um.GetUserAsync(User);
+                if(user==null)
+                {
+                    return RedirectToAction("Login");
+                }
+                var result = await _um.ChangePasswordAsync(user, obj.CurrentPassword, obj.NewPassword);
+                if(!result.Succeeded)
+                {
+                    foreach(var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return View();
+                }
+                await _sm.RefreshSignInAsync(user);
+                return View("Index");
+            }
+            return View(obj);
+        }
+
 
     }
 }
