@@ -75,7 +75,8 @@ namespace DeloitteProject.Controllers
                     ModelState.AddModelError("","Invalid credentials!");
                 }
             }
-            return View(obj);
+            var user = await _um.GetUserAsync(User);
+            return View(user);
         }
 
         [Authorize]
