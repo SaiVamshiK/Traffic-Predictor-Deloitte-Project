@@ -1,21 +1,37 @@
 ﻿@using System.Security.Claims;
 @using Microsoft.AspNetCore.Identity;
-@inject SignInManager<IdentityUser> _sm;
+@model IdentityUser
 
 @{
-    ViewData["Title"] = "Welcome";
+    ViewData["Title"] = "Register";
 }
 
-<h1>Welcome - <b class="small">@ViewBag.message</b></h1>
+<h3>Profile Page</h3>
 
+<form method="post" asp-action="Welcome">
+    <div class="row">
+        <div class="col-md-9">
+            <form asp-action="Welcome">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                </div>
+                <h5>@ViewBag.message</h5>
+            </form>
+        </div>
+    </div>
+</form>
 
-<!--
-    <hr />
-    At the rate sign needed
-    if(_sm.IsSignedIn(User))
-    {
-    <form method="post" asp-controller="IdentityUser" asp-action="Logout">
-        <input type="submit" value="Logout" />
-    </form>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
--->

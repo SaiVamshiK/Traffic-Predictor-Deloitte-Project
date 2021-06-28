@@ -1,6 +1,10 @@
 ﻿@using System.Security.Claims;
 @using Microsoft.AspNetCore.Identity;
 @inject SignInManager<IdentityUser> _sm;
+@inject UserManager<IdentityUser> _um;
+@model IdentityUser
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +29,9 @@
                         @if (_sm.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Welcome">Profile</a>
+                                <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Welcome" asp-route-id="@_um.GetUserId(User)">
+                                    Profile
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Logout">Logout</a>
@@ -53,7 +59,7 @@
 
     <footer class="border-top footer text-muted bg-dark">
         <div class="container">
-            &copy; 2021 - DeloitteProject 
+            &copy; 2021 - DeloitteProject
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

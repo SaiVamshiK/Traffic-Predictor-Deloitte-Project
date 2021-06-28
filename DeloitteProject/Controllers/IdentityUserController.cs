@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using DeloitteProject.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using DeloitteProject.Data;
 
 namespace DeloitteProject.Controllers
 {
@@ -15,10 +16,12 @@ namespace DeloitteProject.Controllers
     {
         private readonly UserManager<IdentityUser> _um;
         private readonly SignInManager<IdentityUser> _sm;
-        public IdentityUserController(UserManager<IdentityUser> um,SignInManager<IdentityUser> sm)
+        private readonly ApplicationDbContext _db;
+        public IdentityUserController(UserManager<IdentityUser> um,SignInManager<IdentityUser> sm,ApplicationDbContext db)
         {
             _um = um;
             _sm = sm;
+            _db = db;
         }
         public IActionResult Index()
         {
@@ -37,7 +40,7 @@ namespace DeloitteProject.Controllers
                 Email=uc.Email,
             };
             var insertRec = await _um.CreateAsync(user,uc.pwd);
-            if(insertRec.Succeeded)
+            if (insertRec.Succeeded)
             {
                 ViewBag.message = "Account for " + uc.UserName + " created successfully";
                 return View("Login");
@@ -73,12 +76,34 @@ namespace DeloitteProject.Controllers
             }
             return View(obj);
         }
-        [Authorize]
-        public IActionResult Welcome()
-        {
-            ViewBag.message = User.Identity.Name;
 
-            return View();
+        [Authorize]
+        public async Task<IActionResult> Welcome(string id)
+        {
+
+            var user = await _um.FindByIdAsync(id);
+            ViewBag.username = user.UserName;
+
+            return View(user);
+        }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Welcome(IdentityUser obj)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _um.FindByIdAsync(obj.Id);
+                user.UserName = obj.UserName;
+                user.Email = obj.Email;
+                var result = await _um.UpdateAsync(user);
+                if(result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                
+            }
+            return View(obj);
         }
 
         public async Task<IActionResult> Logout()
