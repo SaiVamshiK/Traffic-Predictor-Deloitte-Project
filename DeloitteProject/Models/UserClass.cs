@@ -23,5 +23,9 @@ namespace DeloitteProject.Models
         [DataType(DataType.Password)]
         [Compare("pwd")]
         public string ConfirmPwd { get; set; }
+        [Required(ErrorMessage = "Enter your phone number")]
+        [Display(Name = "Phone Number")]
+        [StringLength(10,MinimumLength =10, ErrorMessage = "Enter a valid phone number")]
+        public string PhoneNumber { get; set; }
     }
 }

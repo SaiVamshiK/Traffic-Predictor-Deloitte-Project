@@ -38,6 +38,7 @@ namespace DeloitteProject.Controllers
             var user =new IdentityUser{
                 UserName=uc.UserName,
                 Email=uc.Email,
+                PhoneNumber=uc.PhoneNumber
             };
             var insertRec = await _um.CreateAsync(user,uc.pwd);
             if (insertRec.Succeeded)
@@ -96,6 +97,7 @@ namespace DeloitteProject.Controllers
                 var user = await _um.FindByIdAsync(obj.Id);
                 user.UserName = obj.UserName;
                 user.Email = obj.Email;
+                user.PhoneNumber = obj.PhoneNumber;
                 var result = await _um.UpdateAsync(user);
                 if(result.Succeeded)
                 {
