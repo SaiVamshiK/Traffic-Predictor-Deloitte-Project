@@ -84,8 +84,7 @@ namespace DeloitteProject.Controllers
         {
 
             var user = await _um.FindByIdAsync(id);
-            ViewBag.username = user.UserName;
-
+            
             return View(user);
         }
         [Authorize]
@@ -124,10 +123,11 @@ namespace DeloitteProject.Controllers
         [HttpPost]
         public async Task<IActionResult> PasswordReset(ResetPassword obj)
         {
-            if(ModelState.IsValid)
+            
+            if (ModelState.IsValid)
             {
                 var user = await _um.GetUserAsync(User);
-                if(user==null)
+                if (user==null)
                 {
                     return RedirectToAction("Login");
                 }
@@ -143,7 +143,7 @@ namespace DeloitteProject.Controllers
                 await _sm.RefreshSignInAsync(user);
                 return View("Index");
             }
-            return View(obj);
+            return View();
         }
 
 
