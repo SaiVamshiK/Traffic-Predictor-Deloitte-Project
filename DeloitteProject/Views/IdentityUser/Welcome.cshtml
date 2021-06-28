@@ -29,6 +29,9 @@
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <a class="form-control" asp-controller="IdentityUser" asp-action="PasswordReset">Reset Password</a>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-primary" />
                 </div>
                 <h5>@ViewBag.message</h5>
