@@ -84,8 +84,17 @@ namespace DeloitteProject.Controllers
         {
 
             var user = await _um.FindByIdAsync(id);
-            
+
             return View(user);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Upload(string id)
+        {
+
+            var user = await _um.FindByIdAsync(id);
+            
+            return View();
         }
         [Authorize]
         [HttpPost]

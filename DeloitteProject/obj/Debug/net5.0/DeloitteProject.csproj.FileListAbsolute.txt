@@ -435,3 +435,4 @@ C:\Users\User\Desktop\.net core mvc authentication\DeloitteProject\DeloitteProje
 C:\Users\User\Desktop\.net core mvc authentication\DeloitteProject\DeloitteProject\obj\Debug\net5.0\Razor\Views\IdentityUser\Login.cshtml.g.cs
 C:\Users\User\Desktop\.net core mvc authentication\DeloitteProject\DeloitteProject\obj\Debug\net5.0\Razor\Views\IdentityUser\Welcome.cshtml.g.cs
 C:\Users\User\Desktop\.net core mvc authentication\DeloitteProject\DeloitteProject\obj\Debug\net5.0\Razor\Views\IdentityUser\PasswordReset.cshtml.g.cs
+C:\Users\User\Desktop\.net core mvc authentication\DeloitteProject\DeloitteProject\obj\Debug\net5.0\Razor\Views\IdentityUser\Upload.cshtml.g.cs
