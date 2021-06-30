@@ -85,7 +85,7 @@ namespace DeloitteProject.Controllers
         }
         [Authorize]
         [HttpGet]
-        public IActionResult Dashboard()
+        public IActionResult Dashboard(string id)
         {
             IEnumerable<UserUpload> objList = _db.UserUpload;
             return View();
