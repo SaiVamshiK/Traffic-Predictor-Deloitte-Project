@@ -9,6 +9,9 @@ using DeloitteProject.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using DeloitteProject.Data;
+using DeloitteProject.ViewModels;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace DeloitteProject.Controllers
 {
@@ -17,11 +20,13 @@ namespace DeloitteProject.Controllers
         private readonly UserManager<IdentityUser> _um;
         private readonly SignInManager<IdentityUser> _sm;
         private readonly ApplicationDbContext _db;
-        public IdentityUserController(UserManager<IdentityUser> um,SignInManager<IdentityUser> sm,ApplicationDbContext db)
+        private readonly IHostingEnvironment hostingEnvironment;
+        public IdentityUserController(UserManager<IdentityUser> um,SignInManager<IdentityUser> sm,ApplicationDbContext db, IHostingEnvironment hostingEnvironment)
         {
             _um = um;
             _sm = sm;
             _db = db;
+            this.hostingEnvironment = hostingEnvironment;
         }
         public IActionResult Index()
         {
@@ -78,6 +83,12 @@ namespace DeloitteProject.Controllers
             var user = await _um.GetUserAsync(User);
             return View(user);
         }
+        [Authorize]
+        [HttpGet]
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
 
         [Authorize]
         public async Task<IActionResult> Welcome(string id)
@@ -91,11 +102,43 @@ namespace DeloitteProject.Controllers
         [Authorize]
         public async Task<IActionResult> Upload(string id)
         {
-
             var user = await _um.FindByIdAsync(id);
             
             return View();
         }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Upload(UserUploadViewModel model)
+        {
+            var user = await _um.GetUserAsync(User);
+            if (ModelState.IsValid)
+            {
+                string uniqueFileName = null;
+                if (model.File != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "temp");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.File.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.File.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+                UserUpload newUpload = new UserUpload
+                {
+                    Name = user.UserName,
+                    filePath = uniqueFileName
+                };
+
+                _db.UserUpload.Add(newUpload);
+                _db.SaveChanges();
+                return RedirectToAction("Dashboard");
+            }
+
+            return View();
+        }
+        
+        
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

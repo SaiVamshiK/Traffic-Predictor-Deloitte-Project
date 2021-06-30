@@ -29,6 +29,11 @@
                         @if (_sm.IsSignedIn(User))
                         {
                             <li class="nav-item">
+                                <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Dashboard" asp-route-id="@_um.GetUserId(User)">
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-white small" asp-area="" asp-controller="IdentityUser" asp-action="Welcome" asp-route-id="@_um.GetUserId(User)">
                                     Profile
                                 </a>

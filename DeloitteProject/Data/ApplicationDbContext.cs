@@ -14,5 +14,6 @@ namespace DeloitteProject.Data
         {
 
         }
+        public DbSet<UserUpload> UserUpload { get; set; }
     }
 }
