@@ -3,19 +3,60 @@
     ViewData["Title"] = "ViewIndividual";
 }
 
-<h4>Document MetaData</h4>
+<br />
 
-<ul>
-    @foreach (var record in ViewData["entries"] as IList<UserUpload>)
+<!--
+    <ul>
+    foreach (var record in ViewData["entries"] as IList<UserUpload>)
     {
     <li>
-        @record.Name
+        record.Name
     </li>
     <li>
-        @record.CreatedDate
+        record.CreatedDate
     </li>
     <li>
-        @record.fileName
+        record.fileName
     </li>
     }
 </ul>
+-->
+
+<div class="col-md-8">
+    <div class="card mb-3 small">
+        <div class="card-body">
+
+            @foreach (var record in ViewData["entries"] as IList<UserUpload>)
+            {
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Uploaded by:</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @record.Name
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Created on:</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @record.CreatedDate.ToString("dd/MM/yyyy")
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">File Info</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        @record.fileName
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+    <h4>Results:</h4>
+</div>
