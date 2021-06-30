@@ -12,7 +12,27 @@
     </div>
 }
 
-<h1>Dashboard</h1>
+<h2>Dashboard</h2>
+
+<div class="container">
+
+</div>
+
+<ul>
+    @foreach (var record in ViewData["entries"] as IList<UserUpload>)
+    {
+        <li>
+            @record.Name
+        </li>
+        <li>
+            @record.CreatedDate
+        </li>
+        <li>
+            @record.fileName
+        </li>
+    }
+</ul>
+
 <!--
 <div class="container">
     <div class="col-4">
