@@ -85,7 +85,7 @@ namespace DeloitteProject.Controllers
         }
         [Authorize]
         [HttpGet]
-        public IActionResult Dashboard(string id)
+        public IActionResult Dashboard()
         {
             IEnumerable<UserUpload> mainObj = _db.UserUpload;
             IList<UserUpload> objList = new List<UserUpload>();
@@ -94,11 +94,28 @@ namespace DeloitteProject.Controllers
             {
                 objList.Add(new UserUpload()
                 {
+                    Id=obj.Id,
                     Name = obj.Name,
                     CreatedDate = obj.CreatedDate,
                     fileName = obj.fileName
                 });
             }
+            ViewData["entries"] = objList;
+            return View();
+        }
+
+        [Authorize]
+        public async Task<IActionResult> ViewIndividual(int id)
+        {
+            UserUpload obj =_db.UserUpload.Where(x=> x.Id.Equals(id)).FirstOrDefault();
+            IList<UserUpload> objList = new List<UserUpload>();
+            objList.Add(new UserUpload()
+            {
+                Id = obj.Id,
+                Name = obj.Name,
+                CreatedDate = obj.CreatedDate,
+                fileName = obj.fileName
+            });
             ViewData["entries"] = objList;
             return View();
         }
