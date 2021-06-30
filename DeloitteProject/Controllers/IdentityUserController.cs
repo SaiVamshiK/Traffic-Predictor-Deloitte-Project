@@ -127,11 +127,13 @@ namespace DeloitteProject.Controllers
                 UserUpload newUpload = new UserUpload
                 {
                     Name = user.UserName,
-                    filePath = uniqueFileName
+                    filePath = uniqueFileName,
+                    fileName=model.File.FileName
                 };
 
                 _db.UserUpload.Add(newUpload);
                 _db.SaveChanges();
+                TempData["SuccessMessage"] = "The file has been uploaded successfully.";
                 return RedirectToAction("Dashboard");
             }
 
