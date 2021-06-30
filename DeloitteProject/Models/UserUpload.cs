@@ -13,6 +13,7 @@ namespace DeloitteProject.Models
         public string Name { get; set; }
         public DateTime CreatedDate { get; set; }
         public string filePath { get; set; }
+        public string fileName { get; set; }
         public UserUpload()
         {
             this.CreatedDate = DateTime.UtcNow;

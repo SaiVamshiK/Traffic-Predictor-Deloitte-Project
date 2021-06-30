@@ -32,6 +32,9 @@ namespace DeloitteProject.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("fileName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("filePath")
                         .HasColumnType("nvarchar(max)");
 
