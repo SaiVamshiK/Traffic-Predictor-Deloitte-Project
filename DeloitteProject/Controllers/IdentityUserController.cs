@@ -163,6 +163,7 @@ namespace DeloitteProject.Controllers
                 _db.UserUpload.Add(newUpload);
                 _db.SaveChanges();
                 TempData["SuccessMessage"] = "The file has been uploaded successfully.";
+
                 return RedirectToAction("Dashboard");
             }
 
