@@ -12,6 +12,14 @@ using DeloitteProject.Data;
 using DeloitteProject.ViewModels;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+using CsvHelper;
+using System.Globalization;
+using System.Linq;
+using CsvHelper.Configuration;
+using CsvHelper.Configuration.Attributes;
+using System.Data;
 
 namespace DeloitteProject.Controllers
 {
@@ -32,6 +40,7 @@ namespace DeloitteProject.Controllers
         {
             return View();
         }
+        
         public IActionResult Register()
         {
             return View();
@@ -117,8 +126,51 @@ namespace DeloitteProject.Controllers
                 fileName = obj.fileName
             });
             ViewData["entries"] = objList;
+            string curFile = @"C:\Users\User\Desktop\.net core mvc authentication\DeloitteProject\DeloitteProject\wwwroot\final\";
+            //string curFile = @"C:\Users\User\Desktop\UploadedFiles\";
+            curFile = curFile +obj.filePath;
+            bool isExists = System.IO.File.Exists(curFile) ? true : false;
+            if(!isExists)
+            {
+                ViewData["Results"] = "The file is still under processing";
+                return View();
+            }
+
+            var lines = System.IO.File.ReadAllLines(curFile);
+            var list = new List<OutputClass>();
+            int i = 0;
+            foreach (var line in lines)
+            {
+                var values = line.Split(',');
+                
+                if(i==0)
+                {
+                    i++;
+                }
+                else
+                {
+                    var outputClass = new OutputClass()
+                    {
+                        temp = values[0],
+                        rain_1h = values[1],
+                        snow_1h = values[2],
+                        clouds_all = values[3],
+                        Prediction = values[4]
+                    };
+                    list.Add(outputClass);
+                    i = i + 1;
+                    if (i == 10)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            ViewData["Predictions"] = list;
+
             return View();
         }
+
 
         [Authorize]
         public async Task<IActionResult> Welcome(string id)
@@ -162,6 +214,19 @@ namespace DeloitteProject.Controllers
 
                 _db.UserUpload.Add(newUpload);
                 _db.SaveChanges();
+
+
+                //string str = "Vamshi";
+                //var py = Python.CreateEngine();
+                //try
+                //{
+                //  py.ExecuteFile("c:\\Users\\User\\Desktop\\proj.py");
+                //}
+                //catch (Exception e)
+                //{
+                //  Console.WriteLine(e.Message.ToString());
+                //}
+
                 TempData["SuccessMessage"] = "The file has been uploaded successfully.";
 
                 return RedirectToAction("Dashboard");

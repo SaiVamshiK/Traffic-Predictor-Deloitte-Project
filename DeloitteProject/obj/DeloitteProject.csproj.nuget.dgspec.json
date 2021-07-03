@@ -45,9 +45,21 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "CsvHelper": {
+              "target": "Package",
+              "version": "[27.1.1, )"
+            },
             "IronPython": {
               "target": "Package",
               "version": "[2.7.11, )"
+            },
+            "IronPython.StdLib": {
+              "target": "Package",
+              "version": "[2.7.11, )"
+            },
+            "LumenWorksCsvReader": {
+              "target": "Package",
+              "version": "[4.0.0, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
