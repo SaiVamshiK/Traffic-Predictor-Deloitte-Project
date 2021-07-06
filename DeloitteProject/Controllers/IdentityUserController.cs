@@ -213,7 +213,7 @@ namespace DeloitteProject.Controllers
                 {
                     Name = user.UserName,
                     filePath = uniqueFileName,
-                    fileName=model.File.FileName
+                    fileName = model.File.FileName
                 };
 
                 _db.UserUpload.Add(newUpload);
@@ -234,8 +234,8 @@ namespace DeloitteProject.Controllers
                 TempData["SuccessMessage"] = "The file has been uploaded successfully.";
 
                 return RedirectToAction("Dashboard");
+                
             }
-
             return View();
         }
         
@@ -295,6 +295,7 @@ namespace DeloitteProject.Controllers
                     return View();
                 }
                 await _sm.RefreshSignInAsync(user);
+                TempData["SuccessMessage"] = "Password Updated Successfully";
                 return View("Index");
             }
             return View();
