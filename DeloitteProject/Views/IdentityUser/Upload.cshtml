@@ -3,9 +3,9 @@
     ViewData["Title"] = "Upload";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome!</h1>
-    <p>Here is the place where you can upload your files.</p>
+<div class="text-center" style="background-color:#3f3f3f">
+    <h1 class="display-4" style="color:white">Welcome!</h1>
+    <p style="color:white">Here is the place where you can upload your files.</p>
 </div>
 
 <form enctype="multipart/form-data" asp-controller="IdentityUser" asp-action="Upload"
@@ -25,9 +25,16 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button id="btnSubmit" type="submit" class="btn btn-primary">Upload</button>
+            <button id="btnSubmit" type="submit" class="btn btn-primary" style="margin-left:510px">Upload</button>
         </div>
     </div>
+
+    <a class="navbar-brand" href="/">
+        <div style="width:max-content; height:fit-content; align-items:center;">
+            <img src="~/lib/video/uploadimg.jpeg" type="submit" class="center" style=" width: 300px; height: 300px; margin-left:400px">
+
+        </div>
+    </a>
 
     @*This script is required to display the selected file in the file upload element*@
 

@@ -58,6 +58,7 @@ namespace DeloitteProject.Controllers
             if (insertRec.Succeeded)
             {
                 ViewBag.message = "Account for " + uc.UserName + " created successfully";
+                TempData["SuccessMessage"] = "Account for " + uc.UserName + " created successfully";
                 return View("Login");
             }
             else
@@ -200,10 +201,13 @@ namespace DeloitteProject.Controllers
                 if (model.File != null)
                 {
                     string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "temp");
+                    //string uploadsFolder = "C:\\Users\\User\\Desktop\\deb";
+                    //uniqueFileName = model.File.FileName;
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.File.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     model.File.CopyTo(new FileStream(filePath, FileMode.Create));
                 }
+
 
                 UserUpload newUpload = new UserUpload
                 {

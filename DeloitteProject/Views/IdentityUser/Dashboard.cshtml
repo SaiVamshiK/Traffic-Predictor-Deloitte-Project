@@ -1,27 +1,21 @@
 ﻿
 
-@{
-    ViewData["Title"] = "Dashboard";
-
-}
+@{ ViewData["Title"] = "Dashboard"; }
 
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success alert-dismissable">
-        <strong>@TempData["SuccessMessage"]</strong>
-    </div>
-}
+<div class="alert alert-success alert-dismissable">
+    <strong>@TempData["SuccessMessage"]</strong>
+</div>}
 
-@{
-    int idx = 1;
-}
+@{ int idx = 1; }
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 mt-5">
 
         </div>
         <div class="col-sm-6 mt-5">
-            <table class="table table-striped small">
+            <table class="table table-striped small" bgcolor="#CCE5FF">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -34,14 +28,13 @@
                 <tbody>
                     @foreach (var record in ViewData["entries"] as IList<UserUpload>)
                     {
-                        <tr>
-                            <th scope="row">@idx</th>
-                            <td>@record.Name</td>
-                            <td>@record.CreatedDate.ToString("dd/MM/yyyy")</td>
-                            <td>@record.fileName</td>
-                            <td><a asp-controller="IdentityUser" asp-action="ViewIndividual" asp-route-id="@record.Id">View</a></td>
-                        </tr>
-                        idx = idx + 1;
+        <tr>
+            <th scope="row">@idx</th>
+            <td>@record.Name</td>
+            <td>@record.CreatedDate.ToString("dd/MM/yyyy")</td>
+            <td>@record.fileName</td>
+            <td><a asp-controller="IdentityUser" asp-action="ViewIndividual" asp-route-id="@record.Id" style="color:blue">View</a></td>
+        </tr>idx = idx + 1;
                     }
                 </tbody>
             </table>

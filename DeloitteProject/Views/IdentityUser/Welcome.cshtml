@@ -2,9 +2,7 @@
 @using Microsoft.AspNetCore.Identity;
 @model IdentityUser
 
-@{
-    ViewData["Title"] = "Register";
-}
+@{ ViewData["Title"] = "Register"; }
 
 <h3>Profile Page</h3>
 
@@ -40,6 +38,6 @@
     </div>
 </form>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

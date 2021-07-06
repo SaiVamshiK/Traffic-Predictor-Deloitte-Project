@@ -1,8 +1,39 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@{ ViewData["Title"] = "Home Page"; }
 
+
+<!--
 <div class="text-center">
     <h1 class="display-4">Web Portal for Traffic Prediction</h1>
     <p>Working portal where users’ needs to be authenticated, further they would be granted an ability to upload dataset for training and predict the traffic volumes on future date based on ML model.</p>
+    <!--<video id="videoplayer" src="@Url.Content("-/video.mp4")" controls width="450" height="450" loop />
+
 </div>
+-->
+<body style="background-color:#f1f1f1">
+    <div class="carousel-inner">
+
+
+        <div class="carousel-item active" style="height: 554px; width:none; display:block">
+            <div class="carousel-caption font-weight-bold text-center">
+
+                <h1 class="display-4" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size:44px; font-palette:dark; color:black; background-color:cadetblue">WEB PORTAL FOR TRAFFIC PREDICTION</h1>
+
+                <p style="font-palette: dark; color:black; background-color:grey">Working portal where users’ needs to be authenticated, further they would be granted an ability to upload dataset for training and predict the traffic volumes on future date based on ML model.</p>
+                <!-- The video
+                <video autoplay muted loop id="myVideo">
+                    <source src="~/lib/video/video3.mov" type="video/mp4">
+                </video>
+                    -->
+
+            </div>
+
+            <video class="video-fluid" autoplay loop muted style="width:max-content; height:max-content; display:block">
+                <source src="~/lib/video/video3.mp4" type="video/mp4" />
+            </video>
+
+
+
+        </div>
+
+    </div>
+</body>

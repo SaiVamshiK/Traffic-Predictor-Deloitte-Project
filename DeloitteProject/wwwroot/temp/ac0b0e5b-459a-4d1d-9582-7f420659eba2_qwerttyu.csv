@@ -1,0 +1,3 @@
+ID,holiday,temp,rain_1h,snow_1h,clouds_all,weather_main,weather_description,date_time,traffic_volume
+5958,None,284.28,0,0,75,Squall,Evening squall brings down several trees and halts traffic in multiple parts of the city,05-12-2013 02:00,420
+6899,None,291.95,0,0,0,Clear,"The sky is clear and blue, with a few odd clouds scattered here and there for effect",06-11-2013 22:00,2078
